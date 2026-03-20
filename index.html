@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xuxiangyu169 - Web App</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+    </div>
+    
+    <main class="container">
+        <div class="glass-card">
+            <div class="status-badge">
+                <span class="dot"></span> Online
+            </div>
+            <h1 class="title">Hello, World!</h1>
+            <p class="subtitle">Welcome to my custom domain test page.</p>
+            <p class="description">
+                This beautiful landing page is hosted on <strong>GitHub Pages</strong> and accelerated by <strong>Cloudflare</strong>. 
+                Everything is working perfectly.
+            </p>
+            <div class="action-buttons">
+                <a href="https://github.com/xuxiangyu169/html-test" class="btn primary-btn" target="_blank">View GitHub Repo</a>
+                <a href="#" class="btn secondary-btn" id="confettiBtn">Celebrate</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Simple interactive script
+        document.getElementById('confettiBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            this.textContent = '🎉 Yay!';
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+                this.textContent = 'Celebrate';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
