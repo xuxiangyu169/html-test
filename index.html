@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xuxiangyu169 - Web App</title>
+    <title>Xuxiangyu169 - 专属动态主页</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Custom Mouse Cursor -->
+    <!-- 追光鼠标光标 -->
     <div id="cursor-aura"></div>
     <div id="cursor-dot"></div>
 
@@ -21,21 +21,20 @@
     <main class="container">
         <div class="glass-card" id="tilt-card">
             <div class="status-badge">
-                <span class="dot"></span> Online
+                <span class="dot"></span> 云端正常运行
             </div>
-            <h1 class="title">Hello, World!</h1>
-            <p class="subtitle">Welcome to my custom domain test page.</p>
+            <h1 class="title">你好，世界！</h1>
+            <p class="subtitle">欢迎来到由自定义域名驱动的未来风格着陆页。</p>
             <p class="description">
-                This landing page is hosted on <strong>GitHub Pages</strong> and accelerated by <strong>Cloudflare</strong>. 
-                Everything is working perfectly.
+                这个精美的页面目前已稳妥托管在 <strong>GitHub Pages</strong> 上，并且正由 <strong>Cloudflare</strong> 的企业级安全网络提供全球边缘防线和加速，一切运转完美。
             </p>
 
-            <!-- New Skills Dashboard Section -->
+            <!-- 技能看板区域 -->
             <div class="skills-dashboard">
-                <h3 class="dash-title">Core Skills</h3>
+                <h3 class="dash-title">核心战力模型</h3>
                 <div class="skill-item">
                     <div class="skill-info">
-                        <span class="skill-name">Web Development</span>
+                        <span class="skill-name">现代 Web 全栈开发</span>
                         <span class="skill-pct">90%</span>
                     </div>
                     <div class="skill-bar-bg">
@@ -44,7 +43,7 @@
                 </div>
                 <div class="skill-item">
                     <div class="skill-info">
-                        <span class="skill-name">Serverless Cloud</span>
+                        <span class="skill-name">Serverless 无服务器云架构</span>
                         <span class="skill-pct">85%</span>
                     </div>
                     <div class="skill-bar-bg">
@@ -53,7 +52,7 @@
                 </div>
                 <div class="skill-item">
                     <div class="skill-info">
-                        <span class="skill-name">UI / UX Design</span>
+                        <span class="skill-name">极致 UI / UX 用户体验</span>
                         <span class="skill-pct">75%</span>
                     </div>
                     <div class="skill-bar-bg">
@@ -63,14 +62,14 @@
             </div>
 
             <div class="action-buttons hover-target">
-                <a href="https://github.com/xuxiangyu169/html-test" class="btn primary-btn hover-target" target="_blank">View GitHub Repo</a>
-                <a href="#" class="btn secondary-btn hover-target" id="confettiBtn">Interact</a>
+                <a href="https://github.com/xuxiangyu169/html-test" class="btn primary-btn hover-target" target="_blank">获取开源代码</a>
+                <a href="#" class="btn secondary-btn hover-target" id="confettiBtn">尝试互动</a>
             </div>
         </div>
     </main>
 
     <script>
-        // --- Custom Cursor Logic ---
+        // --- 鼠标追光追踪逻辑 ---
         const cursorDot = document.getElementById('cursor-dot');
         const cursorAura = document.getElementById('cursor-aura');
         const hoverTargets = document.querySelectorAll('.hover-target, .btn');
@@ -82,12 +81,12 @@
             mouseX = e.clientX;
             mouseY = e.clientY;
             
-            // Move dot instantly
+            // 圆心点瞬间跟随
             cursorDot.style.left = `${mouseX}px`;
             cursorDot.style.top = `${mouseY}px`;
         });
 
-        // Smooth follow for aura
+        // 光晕平滑跟随算法
         function animateAura() {
             let dx = mouseX - auraX;
             let dy = mouseY - auraY;
@@ -102,7 +101,7 @@
         }
         animateAura();
 
-        // Enlarge cursor on hover
+        // 悬停时放大光晕的交互效果
         hoverTargets.forEach(target => {
             target.addEventListener('mouseenter', () => {
                 cursorAura.classList.add('aura-hover');
@@ -114,17 +113,17 @@
             });
         });
 
-        // --- 3D Tilt Logic ---
+        // --- 3D 悬浮视差逻辑 ---
         const container = document.querySelector('.container');
         const card = document.getElementById('tilt-card');
 
         container.addEventListener('mousemove', (e) => {
             const rect = container.getBoundingClientRect();
-            // Calculate mouse position relative to center of the container (-1 to 1)
+            // 计算鼠标相对于卡片中心的坐标 (范围 -1 到 1)
             const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
             const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
 
-            // Max rotation degrees
+            // 最大侧倾角度
             const maxDegrees = 12;
             const rotateX = -y * maxDegrees;
             const rotateY = x * maxDegrees;
@@ -133,22 +132,22 @@
         });
 
         container.addEventListener('mouseleave', () => {
-            // Reset to default smoothly
+            // 鼠标移出时平滑复位
             card.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
         });
 
-        // Simple interactive script
+        // 按钮点击特效
         document.getElementById('confettiBtn').addEventListener('click', function(e) {
             e.preventDefault();
-            this.textContent = 'Awesome! ✨';
+            this.textContent = '太棒了！✨';
             this.style.boxShadow = '0 0 20px rgba(99, 102, 241, 0.8)';
             setTimeout(() => {
-                this.textContent = 'Interact';
+                this.textContent = '尝试互动';
                 this.style.boxShadow = 'none';
             }, 1000);
         });
         
-        // Trigger skill bar animation
+        // 延迟触发进度条生长动画
         setTimeout(() => {
             document.querySelectorAll('.skill-bar-fill').forEach(bar => {
                 bar.style.width = bar.getAttribute('style').match(/--target-width:\s*([^;]+);/)[1];

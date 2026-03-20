@@ -1,47 +1,48 @@
-# 🌟 Modern Interactive Landing Page
+# 🌟 现代交互式前端极客主页
 
 <div align="center">
   <h3>
-    <a href="https://html.x2y.qzz.io">查看在线演示 (Live Demo)</a>
+    <a href="https://html.x2y.qzz.io">👉 查看在线演示 👈</a>
   </h3>
-  <p>一个采用现代玻璃拟态（Glassmorphism）设计风格，并带有丰富交互动效的个人主页/仪表盘前端项目。</p>
+  <p>一个运用现代玻璃拟态（Glassmorphism）设计语言，并融入全盘鼠标特效与三维视差的高阶个人主页模板。</p>
 
-  [![GitHub Pages](https://img.shields.io/badge/Deployed%20on-GitHub%20Pages-blue?style=for-the-badge&logo=github)](https://html.x2y.qzz.io)
-  [![Cloudflare](https://img.shields.io/badge/CDN-Cloudflare-f38020?style=for-the-badge&logo=cloudflare)](https://html.x2y.qzz.io)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+  [![部署平台](https://img.shields.io/badge/自动部署于-GitHub%20Pages-blue?style=for-the-badge&logo=github)](https://html.x2y.qzz.io)
+  [![网络安全与加速](https://img.shields.io/badge/CDN%20加速防御-Cloudflare-f38020?style=for-the-badge&logo=cloudflare)](https://html.x2y.qzz.io)
+  [![开源协议](https://img.shields.io/badge/开源协议-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 </div>
 
 ---
 
-## ✨ 核心特性 (Features)
+## ✨ 核心亮点特性
 
-本项目脱离了传统单一的纯静态排版，内置了多种提升用户体验的前端黑科技与微交互：
+本项目摒弃了传统静态图文排版的死板，精心打磨了以下提升用户沉浸感的微交互体验：
 
-* 🖱️ **光晕追随鼠标 (Aura Cursor)**：全屏隐藏默认呆板的光标，取而代之的是平滑移动的绝对中心圆点与带有柔和呼吸感的发光光晕（Aura）。在悬停具有 `hover` 属性的按钮时，光晕会产生放大变色与吸附的磁性效果。
-* 🎲 **3D 视差倾斜 (3D Parallax Tilt)**：卡片容器启用 `transform-style: preserve-3d` 与景深（Perspective）控制。当鼠标在屏幕范围移动时，中央的玻璃态卡片能精确计算相对坐标，产生极具空间包裹感的 3D 倾斜反馈。
-* 📊 **动态数据仪表盘 (Animated Dashboard)**：卡片内部集成了「Core Skills（核心技能栈）」区域，在页面加载（延迟触发）时，通过 CSS 的动态计算变量实现流畅的进度条横向拉伸动画。
-* 🔮 **磨砂玻璃与流光背景 (Glassmorphism & Gradients)**：采用极简高质感的毛玻璃拟态面板（运用 `backdrop-filter: blur`），底层背景分布了三个基于 CSS `animation` 缓缓浮动的多色渐变流光炫彩球体（Orb），彻底沉浸深邃的高级视觉氛围。
-* 📱 **完全响应式 (Responsive Design)**：完美兼容移动端设备尺寸，并在移动端自动降级（移除悬浮和自定义光标等重渲染特性），确保手机端顺滑展示。
+* 🖱️ **光晕磁吸追随**：彻底接管系统默认鼠标光标。运用原生算法计算出的极简发光准星，配合带呼吸感的光晕护盾，顺滑地跟随您的操作。遇到可互动的按钮区域时，光晕会触发专属的放大、变色及磁力吸附反馈。
+* 🎲 **环境感应 3D 视差倾斜**：整张中央展示卡片不再呆板地贴合屏幕平面。我们通过数学矩阵实时计算鼠标空间位置，让卡片容器产生精准无滞后的物理级 3D 侧倾错觉，赋予视觉强烈的立体包裹感。
+* 📊 **动态生长数据看板**：在主视觉的下半部分深度穿插了“核心战力模型”极客风区块。这里采用延迟挂载的 CSS 三次贝塞尔曲线（Cubic-bezier），实现了顺滑悦目的丝滑内流光进度条生长动画。
+* 🔮 **磨砂玻璃晶体质地**：以最严苛的光影克制打造了极简高级感的毛玻璃面板（`backdrop-filter`）。在纯正黑色的环境底层分布了三个依照特定轨道与延迟游离的多色渐变流光球体，映射出赛博朋克与前卫技术交织的高端氛围。
+* 📱 **全平台自适应响应**：不局限于大屏桌面，同样兼顾了手机端的流线型点按阅读体验。系统会对移动端触控场景自动感知，并自动剥离不必要的追踪演算（光标特效），最大程度保障双端各自的渲染流畅度。
 
-## 🛠️ 技术栈 (Tech Stack)
+## 🛠️ 纯净的基础技术层架构
 
-* **结构层 (HTML5)**: 响应式视口、清晰的语义化结构。引用了 Google Fonts (Outfit) 作为全局排版字体。
-* **样式层 (Vanilla CSS3)**: 以最纯粹的原生 CSS 书写每一行动画 (`@keyframes`)、玻璃特效与组件排布。**完全零依赖**（未使用 Tailwind、Bootstrap 等重量级库），最大化极致性能。
-* **逻辑层 (Vanilla JavaScript)**: 没有任何复杂的脚手架（React/Vue），仅通过不足 50 行的轻量级原生 JavaScript 精巧地处理 DOM 交互监听 (如 `mousemove` 坐标捕获)。
+* **结构定义 (HTML5)**: 兼顾语义规范的骨架标记法，轻量且没有任何深渊级标签嵌套。
+* **样式注入 (Vanilla CSS)**: 项目中每一抹流光溢彩、玻璃特效以及空间三栏网格配置，全数仰赖最精纯的原生层叠样式表编写。我们拒绝依赖（如 TailwindCSS 或 Bootstrap) 的冗杂入侵，把性能承载的瓶颈天花板顶得极高。
+* **计算逻辑 (Vanilla JS)**: 大胆放弃在单页展示环境中引入庞杂的声明式框架思维与虚拟树开销。这里仅仅用不足五十行的极简 ECMAScript 脚本，便如手术刀般精准地完成了包括元素吸附、光晕追踪等高频帧级的坐标探测与赋值监听。
 
-## 🚀 部署架构 (Deployment)
+## 🚀 无人值守的极简交付流水线
 
-* **静态服务承载**: [GitHub Pages](https://pages.github.com/) (提供稳定零成本的 Serverless 存储与自动化 CI/CD 流水线)
-* **自定义域名入口**: `html.x2y.qzz.io`
-* **CDN 边缘加速网络**: 利用全球领军者 [Cloudflare](https://www.cloudflare.com/) 代理并加速流量，实现全站防攻击及双向全自动高强度 SSL/TLS 加密通信。
+* **Serverless 云端托管**: 整体底层交由 [GitHub Pages](https://pages.github.com/) 构筑驱动。这就要求除了完全无负担的免费开销，更享受到类似“代码一旦推入 `main` 主干枝，全球服务即刻响应发布”的流畅 CI/CD 机制。
+* **专属身份鉴权**: 定向接驳定制化子域名 `html.x2y.qzz.io` 指路。
+* **军工级边缘计算与拦截护航盾**: 通过挂载了在反向代理分发领域执牛耳者 [Cloudflare](https://www.cloudflare.com/)，在暗处替网页平稳接住了复杂的就近 DNS 投递任务兼毫秒级内容分发、清洗未授权访问并自动上锁高强度双向 HTTPS (SSL/TLS) 传输层密码学通讯保障。
 
-## 📝 本地启动指南 (Getting Started)
+## 📝 二次开发与移植向导
 
-由于本项目采用了最纯粹的前端三剑客理念，如果您想克隆至本地把玩或者做二次修改，**过程简单到极致**：
+因为我们贯彻到底的前端三剑客原始守则极简理念，倘若您对这套流光特效模板有青睐并期望将其克隆至您的工程目录作为门面大盘基座，整体跑路的过程完全可称毫无门槛阻碍：
 
-1. 克隆代码至本地您的开发机：
+1. 一条标准指令全量获取远端仓底：
    ```bash
    git clone https://github.com/xuxiangyu169/html-test.git
    ```
-2. 无需运行 `npm install` 等繁琐命令配置环境。只需通过任何文件管理器找到刚才下载的 `index.html`，双击用浏览器打开它，一切魔法便会自动在眼前展开。
+2. 这个项目干净到你甚至不必去执行一遍 `npm install` 或是被各版本的包管理依赖冲突而弄乱了发型。
+3. 您真正要做的事情只有：打开资源管理器，双击这个主入口文件 `index.html` 送去浏览器解析，之后所有的特效魔法就会在这片沙盒原封运行了。
