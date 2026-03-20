@@ -8,6 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Custom Mouse Cursor -->
+    <div id="cursor-aura"></div>
+    <div id="cursor-dot"></div>
+
     <div class="background">
         <div class="orb orb1"></div>
         <div class="orb orb2"></div>
@@ -15,34 +19,141 @@
     </div>
     
     <main class="container">
-        <div class="glass-card">
+        <div class="glass-card" id="tilt-card">
             <div class="status-badge">
                 <span class="dot"></span> Online
             </div>
             <h1 class="title">Hello, World!</h1>
             <p class="subtitle">Welcome to my custom domain test page.</p>
             <p class="description">
-                This beautiful landing page is hosted on <strong>GitHub Pages</strong> and accelerated by <strong>Cloudflare</strong>. 
+                This landing page is hosted on <strong>GitHub Pages</strong> and accelerated by <strong>Cloudflare</strong>. 
                 Everything is working perfectly.
             </p>
-            <div class="action-buttons">
-                <a href="https://github.com/xuxiangyu169/html-test" class="btn primary-btn" target="_blank">View GitHub Repo</a>
-                <a href="#" class="btn secondary-btn" id="confettiBtn">Celebrate</a>
+
+            <!-- New Skills Dashboard Section -->
+            <div class="skills-dashboard">
+                <h3 class="dash-title">Core Skills</h3>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Web Development</span>
+                        <span class="skill-pct">90%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar-fill" style="--target-width: 90%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Serverless Cloud</span>
+                        <span class="skill-pct">85%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar-fill" style="--target-width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">UI / UX Design</span>
+                        <span class="skill-pct">75%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar-fill" style="--target-width: 75%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons hover-target">
+                <a href="https://github.com/xuxiangyu169/html-test" class="btn primary-btn hover-target" target="_blank">View GitHub Repo</a>
+                <a href="#" class="btn secondary-btn hover-target" id="confettiBtn">Interact</a>
             </div>
         </div>
     </main>
 
     <script>
+        // --- Custom Cursor Logic ---
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorAura = document.getElementById('cursor-aura');
+        const hoverTargets = document.querySelectorAll('.hover-target, .btn');
+
+        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+        let auraX = mouseX, auraY = mouseY;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Move dot instantly
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
+        });
+
+        // Smooth follow for aura
+        function animateAura() {
+            let dx = mouseX - auraX;
+            let dy = mouseY - auraY;
+            
+            auraX += dx * 0.15;
+            auraY += dy * 0.15;
+            
+            cursorAura.style.left = `${auraX}px`;
+            cursorAura.style.top = `${auraY}px`;
+            
+            requestAnimationFrame(animateAura);
+        }
+        animateAura();
+
+        // Enlarge cursor on hover
+        hoverTargets.forEach(target => {
+            target.addEventListener('mouseenter', () => {
+                cursorAura.classList.add('aura-hover');
+                cursorDot.classList.add('dot-hover');
+            });
+            target.addEventListener('mouseleave', () => {
+                cursorAura.classList.remove('aura-hover');
+                cursorDot.classList.remove('dot-hover');
+            });
+        });
+
+        // --- 3D Tilt Logic ---
+        const container = document.querySelector('.container');
+        const card = document.getElementById('tilt-card');
+
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            // Calculate mouse position relative to center of the container (-1 to 1)
+            const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+            const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+
+            // Max rotation degrees
+            const maxDegrees = 12;
+            const rotateX = -y * maxDegrees;
+            const rotateY = x * maxDegrees;
+
+            card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+
+        container.addEventListener('mouseleave', () => {
+            // Reset to default smoothly
+            card.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        });
+
         // Simple interactive script
         document.getElementById('confettiBtn').addEventListener('click', function(e) {
             e.preventDefault();
-            this.textContent = '🎉 Yay!';
-            this.style.transform = 'scale(0.95)';
+            this.textContent = 'Awesome! ✨';
+            this.style.boxShadow = '0 0 20px rgba(99, 102, 241, 0.8)';
             setTimeout(() => {
-                this.style.transform = 'scale(1)';
-                this.textContent = 'Celebrate';
+                this.textContent = 'Interact';
+                this.style.boxShadow = 'none';
             }, 1000);
         });
+        
+        // Trigger skill bar animation
+        setTimeout(() => {
+            document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                bar.style.width = bar.getAttribute('style').match(/--target-width:\s*([^;]+);/)[1];
+            });
+        }, 500);
     </script>
 </body>
 </html>

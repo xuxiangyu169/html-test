@@ -10,6 +10,12 @@
     --secondary-bg: rgba(255,255,255,0.05);
 }
 
+@media (pointer: fine) {
+    * {
+        cursor: none !important;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -26,6 +32,47 @@ body {
     align-items: center;
     overflow: hidden;
     position: relative;
+}
+
+/* --- Custom Cursor --- */
+#cursor-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background-color: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#cursor-aura {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9998;
+    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Cursor Hover States */
+.dot-hover {
+    transform: translate(-50%, -50%) scale(1.5);
+    background-color: var(--primary);
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.aura-hover {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.5);
 }
 
 /* Background Animated Orbs */
@@ -79,16 +126,17 @@ body {
     100% { transform: translate(-50px, 100px) scale(0.9); }
 }
 
-/* Main Container */
+/* Main Container - required for 3D perspective */
 .container {
     position: relative;
     z-index: 10;
     width: 100%;
-    max-width: 600px;
+    max-width: 650px;
     padding: 2rem;
+    perspective: 1200px;
 }
 
-/* Glassmorphism Card */
+/* Glassmorphism Card (Added 3D transform properties) */
 .glass-card {
     background: var(--card-bg);
     backdrop-filter: blur(20px);
@@ -97,13 +145,21 @@ body {
     border-radius: 24px;
     padding: 3rem;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* Smooth transition for when mouse leaves */
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
 .glass-card:hover {
-    transform: translateY(-5px);
     box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.6);
     border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Element depth within the 3D card */
+.glass-card > * {
+    transform: translateZ(30px);
 }
 
 /* Status Badge */
@@ -141,7 +197,7 @@ body {
     font-size: 3rem;
     font-weight: 800;
     line-height: 1.1;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     background: linear-gradient(135deg, #fff, #a5b4fc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -166,25 +222,75 @@ body {
     font-weight: 600;
 }
 
+/* Skills Dashboard */
+.skills-dashboard {
+    margin-bottom: 2.5rem;
+    transform: translateZ(40px); /* Slightly higher pop out */
+}
+
+.dash-title {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.skill-item {
+    margin-bottom: 1.25rem;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.skill-pct {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.skill-bar-bg {
+    width: 100%;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.skill-bar-fill {
+    height: 100%;
+    width: 0; /* Animated via JS */
+    background: linear-gradient(90deg, #6366f1, #00f2fe);
+    border-radius: 999px;
+    transition: width 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
 /* Buttons */
 .action-buttons {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    transform: translateZ(50px); /* Highest pop out */
 }
 
 .btn {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    padding: 0.875rem 1.5rem;
+    padding: 0.875rem 1.75rem;
     border-radius: 12px;
     font-weight: 600;
     font-size: 1rem;
     text-decoration: none;
     transition: all 0.2s ease;
-    cursor: pointer;
     border: none;
+    cursor: none; /* Let custom cursor handle this */
 }
 
 .primary-btn {
@@ -211,13 +317,9 @@ body {
 }
 
 @media (max-width: 640px) {
-    .title {
-        font-size: 2.5rem;
-    }
-    .action-buttons {
-        flex-direction: column;
-    }
-    .btn {
-        width: 100%;
-    }
+    .title { font-size: 2.5rem; }
+    .action-buttons { flex-direction: column; }
+    .btn { width: 100%; }
+    #cursor-aura, #cursor-dot { display: none; } /* Disable custom cursor on mobile */
+    * { cursor: auto !important; }
 }
